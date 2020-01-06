@@ -6,3 +6,4 @@ creatrun.sh can quickly copy run1 with a number of times and change the job name
 
 creatrunv2.sh is bulit upon creatrun.sh it allow to find different directory and then quickly create multiple run for each directory.
 
+creatrunv3.sh is used to run Raxml for multiple sequence dataset.
