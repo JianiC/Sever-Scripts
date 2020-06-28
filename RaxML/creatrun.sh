@@ -16,8 +16,8 @@ do
 	mv $i $n
 	cp ./sub.sh $n
 	sed -i.bak '4s/'jobname'/'"$n"'/g' $n/sub.sh	
-	sed -i.bak '24s/'fastafile'/'"$n.fasta"'/g' $n/sub.sh
-	sed -i.bak '24s/'treenamne'/'"$n.tree"'/g' $n/sub.sh	
+	sed -i.bak '23s/'fastafile'/'"$n.fasta"'/g' $n/sub.sh
+	sed -i.bak '23s/'treename'/'"$n.tree"'/g' $n/sub.sh	
 	rm ./$n/sub.sh.bak 
 	
 done	
