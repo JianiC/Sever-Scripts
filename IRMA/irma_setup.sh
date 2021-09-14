@@ -3,20 +3,28 @@
 ##change directory
 cwd=$(pwd)
 
-echo "\n" >> ./BetaCoV_sub.sh
-## find file end with _R1_001.fastq_gz
+R1=$(find . -type f -name '*1.fq')
 
-R1=$(find . -type f -name '*_R1_001.fastq.gz')
-#echo $R1
-
+#echo $R
 ## get R2 and output file name
 for i in $R1
 do
-	R2=$(sed "s/R1/R2/g" <<< $i)
-	#echo $R2
-	output=$(sed "s/_R1_001.fastq.gz//g" <<< $i)
-	#echo $output
+
+	output=$(sed "s/1.fq//g" <<< $i)
+	R2=$(sed "s/1.fq/2.fq/g" <<< $i)
+	
+	#sed -i '/^@/ s#1:# 1:N:0#' $i
+	#sed -i '/^@/ s#2:# 2:N:0#' $R2
+	
+	echo "$(awk '{if ($1 ~ /@/) print $0" 2:N:0"; else print $0;}' $i)" > $i
+	echo "$(awk '{if ($1 ~ /@/) print $0" 2:N:0"; else print $0;}' $R2)" >$R2
+
+	#echo $name
 	## print IRMA command
-	echo "/home/jc54391/flu-amd/IRMA BetaCoV-pgm $i $R2 $output" >> ./BetaCoV_sub.sh
+
+	cat ./sub.sh | sed "s#jobname#$output#" > irma_sub.sh
+	echo "/home/jc54391/flu-amd/IRMA CoV $i $R2 $output" >> ./irma_sub.sh
+	#sbatch ./irma_sub.sh
+	echo "$output is submitted"
 	
 done	
