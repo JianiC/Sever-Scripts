@@ -30,3 +30,8 @@ source activate /home/jc54391/Tepi_env
 python Tepitope_dis_allele.py -i netMHCpan_out/HLAA0101.xls -o netMHCpan_out/HLAA0101_seqdist.csv
 conda deactivate
 
+#Create environment.yml file via conda
+conda env export > environment_droplet.yml
+
+#Commit the yml file, git clone the repo onto the target OS, and create a conda environmen
+conda env create -f environment.yml
